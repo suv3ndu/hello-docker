@@ -1,0 +1,13 @@
+# Simple K8s pod to deploy HelloDocker app
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-docker-pod
+  labels:
+    app: web
+spec:
+  containers:
+  - name: hello-docker
+    image: suv3ndu/hello-docker:1.0
+    ports:
+    - containerPort: 8080

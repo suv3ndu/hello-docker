@@ -1,0 +1,23 @@
+# Simple deployment used to deploy and manage the app in suv3ndu/hello-docker:1.0
+apiVersion: apps/v1 # deployment spec begins
+kind: Deployment
+metadata:
+  name: web-deploy
+  labels:
+    app: web # this label has nothing to do with pods we are deploying
+spec:
+  replicas: 10
+  selector: # label selector of deployment spec must match labels of pod spec to control pods
+    matchLabels:
+      app: web
+  template: # pod spec begins
+    metadata:
+      labels:
+        app: web
+    spec: 
+      terminationGracePeriodSeconds: 1
+      containers: # container spec begins
+      - name: hello-docker-pod
+        image: suv3ndu/hello-docker:1.0
+        ports:
+        - containerPort: 8080

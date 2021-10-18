@@ -1,0 +1,14 @@
+# NodePort service for our HelloDocker app
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-nodeport
+spec:
+  type: NodePort
+  ports:
+  - port: 80 # cluster IP port
+    targetPort: 8080 # here our app is listening
+    nodePort: 32000 # this port will be used for external access
+    protocol: TCP
+  selector:
+    app: web # it will route traffics to the pods with this label
